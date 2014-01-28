@@ -2,25 +2,27 @@ package com.ticktactoe;
 
 import java.util.Scanner;
 
-public class Main {
+/**
+ * Created by aguggenberger on 1/28/14.
+ */
+public class Game {
 
-    public static int row, col;
-    public static Scanner scan = new Scanner(System.in);
-    public static char[][] board = new char[3][3];
-    public static char turn = 'X';
+    private int row, col;
+    private Scanner scan = new Scanner(System.in);
+    private char[][] board = new char[3][3];
+    private char turn = 'X';
 
-    public static void main(String[] args) {
+    public Game(){
 
         for (int i = 0; i < 3; i++){
             for (int j = 0; j< 3; j++){
                 board[i][j] = '_';
             }
         }
-
-        Play();
     }
 
-    private static void Play() {
+    public void Play() {
+
         boolean playing = true;
         PrintBoard();
         while (playing){
@@ -47,7 +49,7 @@ public class Main {
         }
     }
 
-    public static void PrintBoard(){
+    private void PrintBoard(){
         for (int i = 0; i < 3; i++){
             System.out.println();
             for (int j = 0; j < 3; j++){
@@ -59,7 +61,7 @@ public class Main {
         System.out.println();
     }
 
-    public static boolean GameOver(int rowMove, int colMove){
+    public boolean GameOver(int rowMove, int colMove){
 
         boolean result;
         //check perpendicular victory
@@ -70,19 +72,18 @@ public class Main {
                 board[rowMove][0] == board[rowMove][2])
             result = true;
 
-        //check diagonal victory
+            //check diagonal victory
         else if (board[0][0] == board[1][1] &&
                 board[0][0] == board[2][2] &&
                 board[1][1] != '_')
-           result = true;
+            result = true;
         else if (board[0][2] == board[1][1] &&
                 board[0][2] == board[2][0] &&
                 board[1][1] != '_')
-           result = true;
+            result = true;
         else
             result = false;
         return result;
     }
-
 
 }
